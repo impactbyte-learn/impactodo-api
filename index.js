@@ -1,3 +1,4 @@
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -17,6 +18,7 @@ let todos = [
 
 // -----------------------------------------------------------------------------
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -92,7 +94,7 @@ app.delete("/todos/:id", (req, res) => {
 
 // -----------------------------------------------------------------------------
 
-app.delete("/todos/:id", (req, res) => {
+app.put("/todos/:id", (req, res) => {
   const response = {
     message: `Todo with id ${id} updated`,
     id: req.param.id,
