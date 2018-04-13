@@ -4,7 +4,8 @@
   "description": "Impact Todo API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test",
+    "testw": "mocha -w test",
     "start": "node index",
     "dev": "node-dev index",
     "mon": "nodemon index"
@@ -13,10 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/impactbyte-learn/impactodo-api.git"
   },
-  "keywords": [
-    "impactodo",
-    "api"
-  ],
+  "keywords": ["impactodo", "api"],
   "author": "M Haidar Hanif <npm@mhaidarhanif.com> (https://mhaidarhanif.com)",
   "license": "MIT",
   "bugs": {
