@@ -1,3 +1,5 @@
+const add = require("../math.js");
+
 const assert = require("assert");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
@@ -7,7 +9,7 @@ const API_URL = `http://localhost:3000`;
 
 chai.use(chaiHttp);
 
-describe("Number", function() {
+describe.skip("Number", function() {
   describe("Equality", function() {
     it("should return true if 1st and 2nd number are the same", function() {
       assert.equal(1, 1);
@@ -21,6 +23,12 @@ describe("Number", function() {
       assert.notEqual(1, 2);
       assert.notEqual(2, 3);
       assert.notEqual(3, 4);
+    });
+  });
+
+  describe("Math", function() {
+    it("should return the result of addition", function() {
+      assert.equal(add(1, 1), 2);
     });
   });
 });
@@ -43,6 +51,7 @@ describe("API", function() {
         .request(API_URL)
         .get("/todos")
         .end(function(err, res) {
+          console.log(res.body);
           expect(res.body.data).to.be.an("array");
           done();
         });
