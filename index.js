@@ -9,10 +9,12 @@ const PORT = process.env.PORT || 3000;
 
 let todos = [
   {
-    text: "Learn Node.js"
+    text: "Learn Node.js",
+    date: new Date()
   },
   {
-    text: "Learn Express.js"
+    text: "Learn Express.js",
+    date: new Date()
   }
 ];
 
