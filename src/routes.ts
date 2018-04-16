@@ -1,3 +1,4 @@
+import * as Root from "./controller/Root";
 import * as Todo from "./controller/Todo";
 import * as Post from "./controller/Post";
 
@@ -5,6 +6,12 @@ import * as Post from "./controller/Post";
  * All application routes.
  */
 export const AppRoutes = [
+  // ROOT
+  {
+    path: "/",
+    method: "get",
+    action: Root.get
+  },
   // TODOS
   {
     path: "/todos",
