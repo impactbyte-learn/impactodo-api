@@ -1,9 +1,12 @@
+import * as cors from "cors";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import { Request, Response } from "express";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import { AppRoutes } from "./routes";
+
+const PORT = process.env.PORT || 3000;
 
 // create connection with database
 // note that it's not active database connection
@@ -12,6 +15,8 @@ createConnection()
   .then(async connection => {
     // create express app
     const app = express();
+    app.use(cors());
+    app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
 
     // register all application routes
@@ -28,8 +33,8 @@ createConnection()
     });
 
     // run app
-    app.listen(3000);
-
-    console.log("API is running on :3000");
+    app.listen(PORT, () => {
+      console.log(`Impact Todo API is listening on :${PORT}`);
+    });
   })
-  .catch(error => console.log("TypeORM connection error: ", error));
+  .catch(error => console.log(`TypeORM connection error: ${error}`));

@@ -8,7 +8,9 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node src/index.js",
-    "dev": "tsc-watch --onSuccess 'node src/index.js'"
+    "dev": "tsc-watch --onSuccess 'node src/index.js'",
+    "build": "tsc",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,10 @@
     "typeorm-example",
     "typeorm-express-example"
   ],
+  "engines": {
+    "node": "9.x.x",
+    "npm": "5.6.0"
+  },
   "devDependencies": {
     "mocha": "^5.1.0",
     "nodemon": "1.17.3",
