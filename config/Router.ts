@@ -7,6 +7,7 @@ import { anyCheck, anyCheckTwo } from "../app/middlewares/SampleMiddleware";
 
 import { RootRoute } from "../app/routes/RootRoute";
 import { JWTRoute } from "../app/routes/JWTRoute";
+import { ProtectedRoute } from "../app/routes/ProtectedRoute";
 import { SampleRoute } from "../app/routes/SampleRoute";
 import { TodoRoute } from "../app/routes/TodoRoute";
 
@@ -24,8 +25,13 @@ export const ROUTER: IROUTER[] = [
   },
   {
     handler: JWTRoute,
-    middleware: [jwt({ secret: config.SECRET })],
+    middleware: [],
     path: "/jwt"
+  },
+  {
+    handler: ProtectedRoute,
+    middleware: [jwt({ secret: config.SECRET })],
+    path: "/protected"
   },
   {
     handler: SampleRoute,
