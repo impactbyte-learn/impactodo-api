@@ -1,7 +1,7 @@
 {
   "name": "typeorm-express",
-  "version": "0.0.1",
-  "description": "Example how to use Express and TypeORM with TypeScript.",
+  "version": "0.1.0",
+  "description": "API with Express, TypeORM, TypeScript.",
   "license": "MIT",
   "readmeFilename": "README.md",
   "repository": {
@@ -20,6 +20,7 @@
     "typeorm-express-example"
   ],
   "devDependencies": {
+    "nodemon": "1.17.3",
     "ts-node": "5.0.1",
     "typescript": "^2.5.3"
   },
@@ -34,6 +35,8 @@
     "typeorm": "^0.1.0"
   },
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "tsc && node src/index.js",
+    "start-ts": "ts-node src/index.ts",
+    "dev": "nodemon --watch '**/*.ts' --exec npm run start"
   }
 }

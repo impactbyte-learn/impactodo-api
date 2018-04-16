@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 
 @Entity()
-export class Post {
+export class Todo {
   @PrimaryGeneratedColumn() id: number;
 
   @Column() text: string;

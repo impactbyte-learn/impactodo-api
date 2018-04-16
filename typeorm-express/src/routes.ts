@@ -1,24 +1,38 @@
-import { postGetAllAction } from "./controller/PostGetAllAction";
-import { postGetByIdAction } from "./controller/PostGetByIdAction";
-import { postSaveAction } from "./controller/PostSaveAction";
+import * as Todo from "./controller/Todo";
+import * as Post from "./controller/Post";
 
 /**
  * All application routes.
  */
 export const AppRoutes = [
   {
+    path: "/todos",
+    method: "get",
+    action: Todo.get
+  },
+  {
+    path: "/todos/:id",
+    method: "get",
+    action: Todo.getById
+  },
+  {
+    path: "/todos",
+    method: "post",
+    action: Todo.save
+  },
+  {
     path: "/posts",
     method: "get",
-    action: postGetAllAction
+    action: Post.get
   },
   {
     path: "/posts/:id",
     method: "get",
-    action: postGetByIdAction
+    action: Post.getById
   },
   {
     path: "/posts",
     method: "post",
-    action: postSaveAction
+    action: Post.save
   }
 ];
