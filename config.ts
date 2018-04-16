@@ -3,6 +3,7 @@ import { env } from "process";
 export const DIALECT = "postgres";
 
 const LOCAL = {
+  URL: process.env.DATABASE_URL,
   DB: "impactodo",
   USER_DB: "mhaidarh",
   PASSWORD: "justpassword",
@@ -11,7 +12,7 @@ const LOCAL = {
 };
 
 const PRODUCTION = {
-  url: process.env.DATABASE_URL,
+  URL: process.env.DATABASE_URL,
   DB: env.DB || "impactodo",
   USER_DB: env.USER_DB || "mhaidarh",
   PASSWORD: env.PASSWORD || "justpassword",
