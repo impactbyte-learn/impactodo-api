@@ -7,7 +7,7 @@ export const Connection =
     ? createConnection({
         type: DIALECT,
         url: config.DATABASE.URL,
-        entities: ["app/entity/**/*.js}"],
+        entities: ["app/entity/**/*{.js,.ts}"],
         subscribers: ["app/subscriber/*.js"],
         migrations: ["app/migration/*.js"],
         extra: { ssl: true },
