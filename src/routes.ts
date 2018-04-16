@@ -1,6 +1,7 @@
 import * as Root from "./controller/Root";
 import * as Todo from "./controller/Todo";
 import * as Post from "./controller/Post";
+import * as User from "./controller/User";
 
 /**
  * All application routes.
@@ -23,10 +24,10 @@ export const AppRoutes = [
   { path: "/posts", method: "post", action: Post.save },
 
   // USERS
-  { path: "/users", method: "get", action: Todo.get },
-  { path: "/users/:id", method: "get", action: Todo.getById },
-  { path: "/users", method: "post", action: Todo.save },
-  { path: "/users", method: "delete", action: Todo.destroy },
-  { path: "/users/:id", method: "delete", action: Todo.destroyById },
-  { path: "/users/:id", method: "put", action: Todo.updateById }
+  { path: "/users", method: "get", action: User.get },
+  { path: "/users/:id", method: "get", action: User.getById },
+  { path: "/users", method: "post", action: User.save },
+  { path: "/users", method: "delete", action: User.destroy },
+  { path: "/users/:id", method: "delete", action: User.destroyById },
+  { path: "/users/:id", method: "put", action: User.updateById }
 ];
