@@ -1,9 +1,12 @@
-import * as cors from "cors";
 import "reflect-metadata";
-import { createConnection } from "typeorm";
-import { Request, Response } from "express";
+
+import * as cors from "cors";
+import * as morgan from "morgan";
 import * as express from "express";
 import * as bodyParser from "body-parser";
+
+import { createConnection } from "typeorm";
+import { Request, Response } from "express";
 import { AppRoutes } from "./routes";
 
 const PORT = process.env.PORT || 3000;
@@ -16,6 +19,7 @@ createConnection()
     // create express app
     const app = express();
     app.use(cors());
+    app.use(morgan("combined"));
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
 
