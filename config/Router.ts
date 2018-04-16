@@ -1,11 +1,14 @@
 import * as express from "express";
 import * as jwt from "express-jwt";
 
-import { anyCheck, anyCheckTwo } from "../app/middlewares/SampleMiddleware";
-import { JWTRoute } from "../app/routes/JWTRoute";
-import { RootRoute } from "../app/routes/RootRoute";
-import { SampleRoute } from "../app/routes/SampleRoute";
 import { config } from "../config";
+
+import { anyCheck, anyCheckTwo } from "../app/middlewares/SampleMiddleware";
+
+import { RootRoute } from "../app/routes/RootRoute";
+import { JWTRoute } from "../app/routes/JWTRoute";
+import { SampleRoute } from "../app/routes/SampleRoute";
+import { TodoRoute } from "../app/routes/TodoRoute";
 
 interface IROUTER {
   path: string;
@@ -21,12 +24,17 @@ export const ROUTER: IROUTER[] = [
   },
   {
     handler: JWTRoute,
-    middleware: [],
+    middleware: [jwt({ secret: config.SECRET })],
     path: "/jwt"
   },
   {
     handler: SampleRoute,
-    middleware: jwt({ secret: config.SECRET }),
+    middleware: [],
     path: "/sample"
+  },
+  {
+    handler: TodoRoute,
+    middleware: [],
+    path: "/todos"
   }
 ];

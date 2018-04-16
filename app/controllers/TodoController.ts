@@ -1,68 +1,70 @@
 import { Request, Response } from "express";
+
 import { Todo } from "../entity/Todo";
 
-export async function get(req: Request, res: Response) {
-  const todos = await Todo.find();
+export class TodoController {
+  public static async Get(req: Request, res: Response) {
+    const todos = await Todo.find();
 
-  res.status(200).send({
-    data: todos
-  });
-}
-
-export async function getById(req: Request, res: Response) {
-  const todo = await Todo.findOneById(req.params.id);
-
-  if (!todo) {
-    res.status(404);
-    res.end();
-    return;
+    res.status(200).send({ data: todos });
   }
 
-  res.status(200).send({
-    data: todo
-  });
-}
+  public static async GetById(req: Request, res: Response) {
+    const id: number = req.params.id;
+    const todo = await Todo.findOneById(id);
 
-export async function save(req: Request, res: Response) {
-  const text: string = req.body.text;
-  const todo = Todo.create({
-    text
-  });
+    todo
+      ? res.status(200).send({ data: todo })
+      : res.status(404).send({ message: "NOT FOUND" });
+  }
 
-  await Todo.save(todo);
+  public static async Create(req: Request, res: Response) {
+    const text: string = req.body.text;
+    const todo = new Todo();
 
-  res.status(201).send({
-    message: `New todo created`,
-    data: todo
-  });
-}
+    todo.text = text;
 
-export async function destroy(req: Request, res: Response) {
-  await Todo.clear();
+    try {
+      const newTodo = await Todo.save(todo);
+      res.status(201).send({ message: `New todo created`, data: newTodo });
+    } catch (error) {
+      res.status(404).send({ message: "ERROR" });
+    }
+  }
 
-  res.status(204).send({
-    message: `All todos deleted`
-  });
-}
+  public static async UpdateById(req: Request, res: Response) {
+    const todo = new Todo();
 
-export async function destroyById(req: Request, res: Response) {
-  const id: number = req.params.id;
+    todo.id = req.params.id;
+    todo.text = req.body.text;
 
-  await Todo.removeById(id);
+    try {
+      const newTodo = await Todo.save(todo);
+      newTodo
+        ? res.status(200).send({
+            message: `Todo with ${todo.id} updated`,
+            data: todo
+          })
+        : res.status(404).send({ message: "NOT FOUND" });
+    } catch (error) {
+      res.status(404).send({ message: "ERROR" });
+    }
+  }
 
-  res.status(204).send({
-    message: `Todo with ${id} deleted`
-  });
-}
+  public static async Destroy(req: Request, res: Response) {
+    await Todo.clear();
 
-export async function updateById(req: Request, res: Response) {
-  const id: number = req.params.id;
-  const text: string = req.body.text;
+    res.status(204).send({ message: `All todos deleted` });
+  }
 
-  await Todo.updateById(id, { text: text });
+  public static async DestroyById(req: Request, res: Response) {
+    const id: number = req.params.id;
 
-  res.status(200).send({
-    message: `Todo with ${id} updated`,
-    data: { text }
-  });
+    try {
+      await Todo.removeById(id);
+      res.status(204).send({ message: `Todo with ${id} deleted` });
+    } catch (error) {
+      res.status(404).send({ message: "ERROR" });
+    }
+  }
 }

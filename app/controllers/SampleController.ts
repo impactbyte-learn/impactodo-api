@@ -6,12 +6,14 @@ import { SampleService } from "../services/SampleService";
 export class SampleController {
   public static async All(req: express.Request, res: express.Response) {
     const SampleList = await Sample.find();
+
     res.send(SampleList);
   }
 
   public static async Find(req: express.Request, res: express.Response) {
     const id: number = req.params.id;
     const sample = await Sample.findOneById(id);
+
     sample
       ? res.status(200).send(sample)
       : res.status(404).send({ text: "NOT FOUND" });
@@ -20,6 +22,7 @@ export class SampleController {
   public static async Create(req: express.Request, res: express.Response) {
     const text: string = req.body.text;
     const sample = new Sample();
+
     sample.text = text;
 
     try {
