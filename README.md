@@ -1,20 +1,32 @@
-# Typescript-restful-starter
+# Impact Todo API
 
-Node.js + ExpressJS + TypeOrm + Typescript + JWT + ES2015 + Clustering + Tslint + Mocha + Chai + Superagent
+Impact Todo API with:
+
+* Node.js
+* Express
+* TypeORM
+* Typescript
+* JWT
+* ES2015+
+* TSLint
+* Mocha
+* Chai
+* Superagent
+* Clustering
 
 ---
 
-# What use this Starter App?
+# What use this?
 
 * **JWT** for protect routes.
-* **Clustering mode** for load many forks depending of the CPU's units.
-* **Typeorm** for ORM.
-* **ES2015** with the last of javascript like promises and async/await
+* **TypeORM** for ORM.
+* **ES2015** with the last of JS like `Promise` and `async`/`await`
 * **Mocha & Chai** for test
+* **Clustering mode** for load many forks depending of the CPU's units
 
 ## Structure
 
-```json
+```
 /app
 	/controllers (Controllers of the app)
 	/middlewares (Middlewares for the routes of the app)
@@ -37,13 +49,12 @@ Index.ts (Main file to start the app)
 # Install
 
 1.  First clone this repository.
-    git@github.com:camesine/Typescript-restful-starter.git
 2.  Download all dependencies.
     npm install
-3.  Edit the file ./config.ts with your own settings:
+3.  Edit the file `./config.ts` with your own settings:
 
 ```js
-const LOCAL_CONFIGURATION = {
+const LOCAL = {
   SERVER: "127.0.0.1",
   PORT_DB: 3306,
   DB: "test",
@@ -52,7 +63,7 @@ const LOCAL_CONFIGURATION = {
   DIALECT: "mysql"
 };
 
-const PRODUCTION_CONFIGURATION = {
+const PRODUCTION = {
   SERVER: process.env.SERVER || "localhost",
   DB: process.env.DB || "prod",
   PORT_DB: process.env.PORT_DB || 3306,
@@ -62,12 +73,9 @@ const PRODUCTION_CONFIGURATION = {
 };
 
 export const config = {
-  SECRET: "HltH3R3",
-  PORT_APP: 1344,
-  DATABASE:
-    process.env.NODE_ENV === "PRODUCTION"
-      ? PRODUCTION_CONFIGURATION
-      : LOCAL_CONFIGURATION
+  SECRET: "yourappsecrethere",
+  PORT_APP: 3000,
+  DATABASE: process.env.NODE_ENV === "PRODUCTION" ? PRODUCTION : LOCAL
 };
 ```
 
@@ -77,19 +85,25 @@ export const config = {
 
 When execute any of this commands the app start with clustering, creating many cluster apps depending of the numbers of CPU's your computer had.
 
-### Development: In Development mode the express app is starter with nodemon for automatic refresh when do changes.
+### Development
+
+In development mode the express app is starter with nodemon for automatic refresh when do changes.
 
 ```sh
 npm run dev
 ```
 
-### Test: Run test in development environment
+### Test
+
+Run test in development environment
 
 ```sh
 npm test
 ```
 
-### Production: Run app in production environment
+### Production
+
+Run app in production environment
 
 ```sh
 npm start
