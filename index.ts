@@ -7,6 +7,7 @@ import * as bodyParser from "body-parser";
 
 import { createConnection } from "typeorm";
 import { Request, Response } from "express";
+
 import { AppRoutes } from "./routes";
 
 const PORT = process.env.PORT || 3000;
