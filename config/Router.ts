@@ -3,6 +3,7 @@ import * as jwt from "express-jwt";
 
 import { anyCheck, anyCheckTwo } from "../app/middlewares/SampleMiddleware";
 import { JWTRoute } from "../app/routes/JWTRoute";
+import { RootRoute } from "../app/routes/RootRoute";
 import { SampleRoute } from "../app/routes/SampleRoute";
 import { config } from "../config";
 
@@ -14,7 +15,7 @@ interface IROUTER {
 
 export const ROUTER: IROUTER[] = [
   {
-    handler: SampleRoute,
+    handler: RootRoute,
     middleware: [anyCheck, anyCheckTwo],
     path: "/"
   },

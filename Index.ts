@@ -7,8 +7,6 @@ import { Server } from "./config/Server";
 if (cluster.isMaster) {
   console.log(`\n -------------------> RUN ${env.NODE_ENV} ENVIRONMENT \n`);
 
-  const numCPUs = cpus().length;
-
   for (const cpu of cpus()) {
     cluster.fork();
   }
@@ -28,36 +26,41 @@ if (cluster.isMaster) {
 } else {
   const port: number = Number(env.PORT) || config.PORT_APP || 3000;
 
-  new Server().Start().then(server => {
-    server.listen(port);
+  new Server()
+    .Start()
+    .then(server => {
+      server.listen(port);
 
-    server.on("error", (error: any) => {
-      if (error.syscall !== "listen") throw error;
+      server.on("error", (error: any) => {
+        if (error.syscall !== "listen") throw error;
 
-      const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+        const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
-      switch (error.code) {
-        case "EACCES":
-          console.error(`${bind} requires elevated privileges`);
-          process.exit(1);
-          break;
-        case "EADDRINUSE":
-          console.error(`${bind} is already in use`);
-          process.exit(1);
-          break;
-        default:
-          throw error;
-      }
-    });
+        switch (error.code) {
+          case "EACCES":
+            console.error(`${bind} requires elevated privileges`);
+            process.exit(1);
+            break;
+          case "EADDRINUSE":
+            console.error(`${bind} is already in use`);
+            process.exit(1);
+            break;
+          default:
+            throw error;
+        }
+      });
 
-    server.on("listening", () => {
-      const addr = server.address();
-      const bind =
-        typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
+      server.on("listening", () => {
+        const addr = server.address();
+        const bind =
+          typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
 
-      console.log(
-        `API is running in proc ${process.pid}, listening on PORT ${addr.port}`
-      );
-    });
-  });
+        console.log(
+          `API is running in proc ${process.pid}, listening on PORT ${
+            addr.port
+          }`
+        );
+      });
+    })
+    .catch(error => console.log(error));
 }

@@ -1,17 +1,18 @@
 import * as express from "express";
+
 import { Sample } from "../entity/Sample";
 import { SampleService } from "../services/SampleService";
 
 export class SampleController {
   public static async All(req: express.Request, res: express.Response) {
     const SampleList = await Sample.find();
-    return res.send(SampleList);
+    res.send(SampleList);
   }
 
   public static async Find(req: express.Request, res: express.Response) {
     const id: number = req.params.id;
     const sample = await Sample.findOneById(id);
-    return sample
+    sample
       ? res.status(200).send(sample)
       : res.status(404).send({ text: "NOT FOUND" });
   }
@@ -23,9 +24,9 @@ export class SampleController {
 
     try {
       const Result = await Sample.save(sample);
-      return res.status(200).send(Result);
+      res.status(200).send(Result);
     } catch (ex) {
-      return res.status(404).send({ text: "ERROR" });
+      res.status(404).send({ text: "ERROR" });
     }
   }
 
@@ -36,11 +37,11 @@ export class SampleController {
 
     try {
       const Result = await Sample.save(sample);
-      return Result
+      Result
         ? res.status(200).send()
         : res.status(404).send({ text: "NOT FOUND" });
     } catch (ex) {
-      return res.status(404).send({ text: "ERROR" });
+      res.status(404).send({ text: "ERROR" });
     }
   }
 
@@ -49,9 +50,9 @@ export class SampleController {
 
     try {
       await Sample.removeById(id);
-      return res.status(204).send();
+      res.status(204).send();
     } catch (ex) {
-      return res.status(404).send({ text: "ERROR" });
+      res.status(404).send({ text: "ERROR" });
     }
   }
 }
