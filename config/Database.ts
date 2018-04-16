@@ -8,8 +8,6 @@ export const Connection =
         type: DIALECT,
         url: config.DATABASE.URL,
         entities: ["app/entity/**/*{.js,.ts}"],
-        subscribers: ["app/subscriber/*.js"],
-        migrations: ["app/migration/*.js"],
         extra: { ssl: true },
         synchronize: true,
         logging: false
@@ -23,8 +21,6 @@ export const Connection =
         password: config.DATABASE.PASSWORD,
         port: config.DATABASE.PORT_DB,
         entities: ["app/entity/**/*{.js,.ts}"],
-        subscribers: ["app/subscriber/*.js"],
-        migrations: ["app/migration/*.js"],
         cli: {
           entitiesDir: "app/entity",
           migrationsDir: "app/migration",
