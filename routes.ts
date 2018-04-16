@@ -1,7 +1,7 @@
-import * as Root from "./controller/Root";
-import * as Todo from "./controller/Todo";
-import * as Post from "./controller/Post";
-import * as User from "./controller/User";
+import * as Root from "./src/controller/Root";
+import * as Todo from "./src/controller/Todo";
+import * as Post from "./src/controller/Post";
+import * as User from "./src/controller/User";
 
 /**
  * All application routes.
