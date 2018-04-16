@@ -6,7 +6,7 @@
   "password": "",
   "database": "impactodo",
   "synchronize": true,
-  "entities": ["src/entity/*.js"],
+  "entities": ["src/entity/**/*.js"],
   "subscribers": ["src/subscriber/*.js"],
   "migrations": ["src/migration/*.js"],
   "cli": {

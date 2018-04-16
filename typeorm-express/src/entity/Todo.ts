@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Entity,
   PrimaryGeneratedColumn,
   Column,
@@ -7,8 +8,9 @@ import {
 } from "typeorm";
 
 @Entity()
-export class Todo {
+export class Todo extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
 
-  @Column() text: string;
+  @Column({ length: 140 })
+  text: string;
 }

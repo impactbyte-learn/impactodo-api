@@ -5,6 +5,7 @@ import * as Post from "./controller/Post";
  * All application routes.
  */
 export const AppRoutes = [
+  // TODOS
   {
     path: "/todos",
     method: "get",
@@ -20,6 +21,22 @@ export const AppRoutes = [
     method: "post",
     action: Todo.save
   },
+  {
+    path: "/todos",
+    method: "delete",
+    action: Todo.destroy
+  },
+  {
+    path: "/todos/:id",
+    method: "delete",
+    action: Todo.destroyById
+  },
+  {
+    path: "/todos/:id",
+    method: "put",
+    action: Todo.updateById
+  },
+  // POSTS
   {
     path: "/posts",
     method: "get",

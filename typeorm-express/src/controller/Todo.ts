@@ -1,17 +1,16 @@
 import { Request, Response } from "express";
-import { getManager } from "typeorm";
 import { Todo } from "../entity/Todo";
 
 export async function get(req: Request, res: Response) {
-  const repository = getManager().getRepository(Todo);
-  const todos = await repository.find();
+  const todos = await Todo.find();
 
-  res.send(todos);
+  res.status(200).send({
+    data: todos
+  });
 }
 
 export async function getById(req: Request, res: Response) {
-  const repository = getManager().getRepository(Todo);
-  const todo = await repository.findOneById(req.params.id);
+  const todo = await Todo.findOneById(req.params.id);
 
   if (!todo) {
     res.status(404);
@@ -19,19 +18,51 @@ export async function getById(req: Request, res: Response) {
     return;
   }
 
-  res.send(todo);
+  res.status(200).send({
+    data: todo
+  });
 }
 
 export async function save(req: Request, res: Response) {
-  const repository = getManager().getRepository(Todo);
+  const text: string = req.body.text;
+  const todo = Todo.create({
+    text
+  });
 
-  console.log(req.body);
+  await Todo.save(todo);
 
-  const todo = repository.create(req.body);
+  res.status(201).send({
+    message: `New todo created`,
+    data: todo
+  });
+}
 
-  console.log(todo);
+export async function destroy(req: Request, res: Response) {
+  await Todo.clear();
 
-  await repository.save(todo);
+  res.status(204).send({
+    message: `All todos deleted`
+  });
+}
 
-  res.send(todo);
+export async function destroyById(req: Request, res: Response) {
+  const id: number = req.params.id;
+
+  await Todo.removeById(id);
+
+  res.status(204).send({
+    message: `Todo with ${id} deleted`
+  });
+}
+
+export async function updateById(req: Request, res: Response) {
+  const id: number = req.params.id;
+  const text: string = req.body.text;
+
+  await Todo.updateById(id, { text: text });
+
+  res.status(200).send({
+    message: `Todo with ${id} updated`,
+    data: { text }
+  });
 }
