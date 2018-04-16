@@ -1,5 +1,7 @@
+const DIALECT = "postgres";
+
 const LOCAL = {
-  type: "postgres",
+  type: DIALECT,
   host: "localhost",
   port: 5432,
   username: "mhaidarh",
@@ -18,7 +20,7 @@ const LOCAL = {
 };
 
 const PRODUCTION = {
-  type: "postgres",
+  type: DIALECT,
   url: process.env.DATABASE_URL,
   synchronize: true,
   logging: true,
