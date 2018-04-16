@@ -11,10 +11,8 @@
     "dev": "tsc-watch --onSuccess 'node src/index.js'",
     "build": "tsc",
     "postinstall": "npm run build",
-    "new-start":
-      "npm run new-build && cd dist && cross-env NODE_ENV=PRODUCTION node src/index.js",
-    "new-dev":
-      "cross-env NODE_ENV=DEV nodemon --watch '**/*.ts' --exec 'ts-node' src/index.ts",
+    "new-start": "npm run new-build && cd dist && cross-env NODE_ENV=PRODUCTION node src/index.js",
+    "new-dev": "cross-env NODE_ENV=DEV nodemon --watch '**/*.ts' --exec 'ts-node' src/index.ts",
     "new-test": "mocha --timeout 20000 ts-node test/*.ts",
     "new-build": "npm run new-clean && tsc --outDir dist",
     "new-clean": "rimraf dist"
