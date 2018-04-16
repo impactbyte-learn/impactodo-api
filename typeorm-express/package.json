@@ -22,6 +22,7 @@
   "devDependencies": {
     "nodemon": "1.17.3",
     "ts-node": "5.0.1",
+    "tsc-watch": "^1.0.19",
     "typescript": "^2.5.3"
   },
   "dependencies": {
@@ -36,7 +37,6 @@
   },
   "scripts": {
     "start": "tsc && node src/index.js",
-    "start-ts": "ts-node src/index.ts",
-    "dev": "nodemon --watch '**/*.ts' --exec npm run start"
+    "dev": "tsc-watch --onSuccess 'node src/index.js'"
   }
 }
