@@ -9,7 +9,8 @@ import { SampleService } from "../app/services/SampleService";
 import { config } from "../config";
 import { Connection } from "../config/Database";
 
-const URI: string = "http://localhost:" + config.PORT_APP;
+const URI: string = `http://localhost:${config.PORT_APP}`;
+
 let token: string = null;
 let IdRecord: number = null;
 let IdRecordTwo: number = null;
