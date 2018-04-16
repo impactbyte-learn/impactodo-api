@@ -14,6 +14,6 @@ export class SampleService {
   }
 
   public BulkCreate(Samples: Sample[]): Promise<Sample[]> {
-    return this.SampleRepository.BukCreate(Samples);
+    return this.SampleRepository.BulkCreate(Samples);
   }
 }

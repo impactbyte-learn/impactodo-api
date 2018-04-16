@@ -1,6 +1,5 @@
 import * as express from "express";
 import { Sample } from "../entity/Sample";
-import { SampleRepository } from "../repository/SampleRepository";
 import { SampleService } from "../services/SampleService";
 
 export class SampleController {

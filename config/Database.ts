@@ -5,11 +5,11 @@ import { config, DIALECT } from "../config";
 export const Connection = createConnection({
   type: DIALECT,
   database: config.DATABASE.DB,
-  entities: ["app/entity/**/*{.js,.ts}"],
   host: config.DATABASE.SERVER,
   username: config.DATABASE.USER_DB,
   password: config.DATABASE.PASSWORD,
   port: config.DATABASE.PORT_DB,
+  synchronize: true,
   logging: false,
-  synchronize: true
+  entities: ["app/entity/**/*{.js,.ts}"]
 });

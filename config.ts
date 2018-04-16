@@ -1,28 +1,26 @@
 import { env } from "process";
 
-export const DIALECT = "mysql";
+export const DIALECT = "postgres";
 
-const LOCAL_CONFIGURATION = {
+const LOCAL = {
   DB: "impactodo",
-  USER_DB: "root",
-  PASSWORD: "",
-  PORT_DB: 3306,
-  SERVER: "127.0.0.1"
+  USER_DB: "mhaidarh",
+  PASSWORD: "justpassword",
+  PORT_DB: 5432,
+  SERVER: "localhost"
 };
 
-const PRODUCTION_CONFIGURATION = {
+const PRODUCTION = {
+  url: process.env.DATABASE_URL,
   DB: env.DB || "impactodo",
-  PASSWORD: env.PASSWORD || "",
-  PORT_DB: Number(env.PORT_DB) || 3306,
-  SERVER: env.SERVER || "localhost",
-  USER_DB: env.USER_DB || "root"
+  USER_DB: env.USER_DB || "mhaidarh",
+  PASSWORD: env.PASSWORD || "justpassword",
+  PORT_DB: Number(env.PORT_DB) || 5432,
+  SERVER: env.SERVER || "localhost"
 };
 
 export const config = {
-  DATABASE:
-    env.NODE_ENV === "PRODUCTION"
-      ? PRODUCTION_CONFIGURATION
-      : LOCAL_CONFIGURATION,
-  PORT_APP: 3030,
-  SECRET: "makeimpactwithyourcode"
+  DATABASE: env.NODE_ENV === "production" ? PRODUCTION : LOCAL,
+  SECRET: "makeimpactwithyourcode",
+  PORT_APP: 3000
 };

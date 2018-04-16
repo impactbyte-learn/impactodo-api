@@ -1,5 +1,6 @@
 import * as express from "express";
 import * as jwt from "express-jwt";
+
 import { anyCheck, anyCheckTwo } from "../app/middlewares/SampleMiddleware";
 import { JWTRoute } from "../app/routes/JWTRoute";
 import { SampleRoute } from "../app/routes/SampleRoute";
