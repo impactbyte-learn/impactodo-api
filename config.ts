@@ -13,11 +13,11 @@ const LOCAL = {
 
 const PRODUCTION = {
   URL: process.env.DATABASE_URL,
-  DB: env.DB || "impactodo",
-  USER_DB: env.USER_DB || "mhaidarh",
-  PASSWORD: env.PASSWORD || "justpassword",
-  PORT_DB: Number(env.PORT_DB) || 5432,
-  SERVER: env.SERVER || "localhost"
+  DB: env.DB,
+  USER_DB: env.USER_DB,
+  PASSWORD: env.PASSWORD,
+  PORT_DB: Number(env.PORT_DB),
+  SERVER: env.SERVER
 };
 
 export const config = {
