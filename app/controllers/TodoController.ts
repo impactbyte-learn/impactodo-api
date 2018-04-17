@@ -35,8 +35,10 @@ export class TodoController {
   public static async UpdateById(req: Request, res: Response) {
     const todo = new Todo();
 
-    todo.id = req.params.id;
+    todo.id = Number(req.params.id);
     todo.text = req.body.text;
+
+    console.log({ todo });
 
     try {
       const newTodo = await Todo.save(todo);
@@ -47,7 +49,7 @@ export class TodoController {
           })
         : res.status(404).send({ message: "NOT FOUND" });
     } catch (error) {
-      res.status(404).send({ message: "ERROR" });
+      res.status(404).send({ message: "ERROR ON UPDATE" });
     }
   }
 
@@ -58,10 +60,10 @@ export class TodoController {
   }
 
   public static async DestroyById(req: Request, res: Response) {
-    const id: number = req.params.id;
+    const id = Number(req.params.id);
 
     try {
-      await Todo.removeById(id);
+      Todo.removeById(id);
       res.status(204).send({ message: `Todo with ${id} deleted` });
     } catch (error) {
       res.status(404).send({ message: "ERROR" });

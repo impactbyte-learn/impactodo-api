@@ -1,3 +1,5 @@
+import * as bcrypt from "bcrypt";
+
 import { Request, Response } from "express";
 import { User } from "../entity/User";
 

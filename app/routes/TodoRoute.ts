@@ -6,6 +6,7 @@ export const TodoRoute: express.Router = express
   .Router()
   .get("/", TodoController.Get)
   .get("/:id", TodoController.GetById)
-  .post("/", [SampleMiddleware.CheckCreate], TodoController.Create)
-  .put("/:id", [SampleMiddleware.CheckUpdate], TodoController.UpdateById)
-  .delete("/", [SampleMiddleware.CheckDelete], TodoController.Destroy);
+  .post("/", TodoController.Create)
+  .put("/:id", TodoController.UpdateById)
+  .delete("/", TodoController.Destroy)
+  .delete("/:id", TodoController.DestroyById);

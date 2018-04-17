@@ -4,12 +4,9 @@
   "description": "kit starter node application",
   "main": "server.js",
   "scripts": {
-    "start":
-      "npm run build && cd dist && cross-env NODE_ENV=production node Index.js",
-    "dev":
-      "cross-env NODE_ENV=DEV ./node_modules/.bin/nodemon --watch '**/*.ts' --exec './node_modules/.bin/ts-node' Index.ts",
-    "test":
-      "./node_modules/.bin/_mocha --timeout 20000 ./node_modules/.bin/_ts-node test/TestRouter.ts",
+    "start": "npm run build && cd dist && cross-env NODE_ENV=production node Index.js",
+    "dev": "cross-env NODE_ENV=DEV ./node_modules/.bin/nodemon --watch '**/*.ts' --exec './node_modules/.bin/ts-node' Index.ts",
+    "test": "./node_modules/.bin/_mocha --timeout 20000 ./node_modules/.bin/_ts-node test/TestRouter.ts",
     "build": "npm run clean && tsc --outDir dist",
     "clean": "rimraf dist"
   },
@@ -29,6 +26,7 @@
     "@types/jsonwebtoken": "^7.2.6",
     "@types/method-override": "0.0.31",
     "@types/node": "^9.4.7",
+    "bcrypt": "2.0.0",
     "body-parser": "^1.18.2",
     "cluster": "^0.7.7",
     "cors": "^2.8.4",

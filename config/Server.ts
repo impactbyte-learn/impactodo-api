@@ -64,6 +64,10 @@ export class Server {
       this.app.use(route.path, route.middleware, route.handler);
     }
 
+    ROUTER.forEach(route => {
+      this.app.use(route.path, route.middleware, route.handler);
+    });
+
     this.app.use(
       (
         req: express.Request,
