@@ -48,34 +48,48 @@ Index.ts (Main file to start the app)
 
 # Install
 
-1.  First clone this repository.
-2.  Download all dependencies.
-    npm install
-3.  Edit the file `./config.ts` with your own settings:
+Clone this repository.
+
+Download all dependencies.
+
+```sh
+npm install
+```
+
+Remember to `start` your database first, such as `mysql` or `postgresql`.
+
+```sh
+sudo service mysql start
+sudo service postgresql start
+```
+
+Then edit the file `./config.ts` with your own settings accordingly:
 
 ```js
+export const DIALECT = "postgres";
+
 const LOCAL = {
-  SERVER: "127.0.0.1",
-  PORT_DB: 3306,
-  DB: "test",
-  USER_DB: "root",
-  PASSWORD: "",
-  DIALECT: "mysql"
+  URL: process.env.DATABASE_URL,
+  DB: "impactodo",
+  USER_DB: "username",
+  PASSWORD: "yourpassword",
+  PORT_DB: 5432,
+  SERVER: "localhost"
 };
 
 const PRODUCTION = {
-  SERVER: process.env.SERVER || "localhost",
-  DB: process.env.DB || "prod",
-  PORT_DB: process.env.PORT_DB || 3306,
-  USER_DB: process.env.USER_DB || "root",
-  PASSWORD: process.env.PASSWORD || "",
-  DIALECT: process.env.DIALECT || "mysql"
+  URL: process.env.DATABASE_URL,
+  DB: env.DB,
+  USER_DB: env.USER_DB,
+  PASSWORD: env.PASSWORD,
+  PORT_DB: Number(env.PORT_DB),
+  SERVER: env.SERVER
 };
 
 export const config = {
-  SECRET: "yourappsecrethere",
-  PORT_APP: 3000,
-  DATABASE: process.env.NODE_ENV === "PRODUCTION" ? PRODUCTION : LOCAL
+  DATABASE: env.NODE_ENV === "production" ? PRODUCTION : LOCAL,
+  SECRET: "makeimpactwithyourcode",
+  PORT_APP: 3000
 };
 ```
 
